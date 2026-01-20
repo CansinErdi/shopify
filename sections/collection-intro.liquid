@@ -1,0 +1,38 @@
+{% comment %}
+  Collection Intro Section
+  - Shows collection title
+  - Shows collection description
+{% endcomment %}
+
+<div class="section section--small">
+  <div class="container">
+    <div class="collection-header">
+      <h1 class="collection-header__title">{{ collection.title | downcase }}</h1>
+      
+      {%- if collection.description != blank -%}
+        <div class="collection-header__description">
+          {{ collection.description }}
+        </div>
+      {%- elsif section.settings.default_description != blank -%}
+        <div class="collection-header__description">
+          {{ section.settings.default_description }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection Intro",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "default_description",
+      "label": "Default Description",
+      "info": "Used when collection has no description",
+      "default": "<p>Shop and discover our collections of sophisticated statement pieces, modern staples and sculptural objects, handcrafted with a dedication to responsible and timeless design.</p>"
+    }
+  ]
+}
+{% endschema %}

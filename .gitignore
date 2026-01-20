@@ -1,0 +1,28 @@
+# Shopify Theme Git Ignore
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Shopify
+config/settings_data.json
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+.env
+.env.local

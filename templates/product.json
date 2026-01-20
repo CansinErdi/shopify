@@ -1,0 +1,25 @@
+{
+    "sections": {
+        "product-main": {
+            "type": "product-main",
+            "settings": {
+                "variant_label": "Select Option",
+                "show_description": true
+            }
+        },
+        "product-info-accordions": {
+            "type": "product-info-accordions",
+            "settings": {
+                "accordion_about_title": "About",
+                "accordion_shipping_title": "Shipping & Pick-up",
+                "accordion_care_title": "Jewelry Care",
+                "accordion_terms_title": "Sales Terms & Exchange",
+                "accordion_custom_title": "Custom Projects info"
+            }
+        }
+    },
+    "order": [
+        "product-main",
+        "product-info-accordions"
+    ]
+}

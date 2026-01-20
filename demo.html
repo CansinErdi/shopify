@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Atelier - Theme Demo</title>
+    <style>
+        /* CSS Reset */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-size: 14px;
+            color: #1A1A1A;
+            background-color: #FFFFFF;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        a:hover {
+            opacity: 0.7;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            font-family: inherit;
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            background: #FFFFFF;
+            border-bottom: 1px solid #E0E0E0;
+            z-index: 100;
+            padding: 20px 0;
+        }
+
+        .header__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .header__logo {
+            flex-shrink: 0;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .header__nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .header__menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .header__menu-item a {
+            font-size: 13px;
+            text-transform: lowercase;
+            letter-spacing: 0.5px;
+        }
+
+        .header__actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-shrink: 0;
+        }
+
+        .header__locale-selector select {
+            border: none;
+            background: transparent;
+            font-size: 13px;
+            cursor: pointer;
+            text-transform: lowercase;
+        }
+
+        .header__cart-link {
+            position: relative;
+            font-size: 13px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background: #1A1A1A;
+            color: #FFFFFF;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        /* Collection Header */
+        .collection-header {
+            text-align: center;
+            padding: 40px 0 20px;
+        }
+
+        .collection-header__title {
+            font-size: 24px;
+            font-weight: 400;
+            text-transform: lowercase;
+            margin-bottom: 20px;
+        }
+
+        .collection-header__description {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        /* Collection Categories */
+        .collection-categories {
+            padding: 30px 0;
+            text-align: center;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .collection-categories__label {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .collection-categories__list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px 15px;
+            list-style: none;
+        }
+
+        .collection-categories__item {
+            font-size: 13px;
+            text-transform: lowercase;
+        }
+
+        .collection-categories__item:not(:last-child)::after {
+            content: " |";
+            margin-left: 15px;
+            opacity: 0.5;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            padding: 40px 0;
+        }
+
+        .grid {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .product-card {
+            display: block;
+        }
+
+        .product-card__image-wrapper {
+            position: relative;
+            padding-bottom: 125%;
+            margin-bottom: 15px;
+            overflow: hidden;
+            background: #f9f9f9;
+        }
+
+        .product-card__image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-card__image {
+            transform: scale(1.05);
+        }
+
+        .product-card__info {
+            text-align: center;
+        }
+
+        .product-card__title {
+            font-size: 14px;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .product-card__price {
+            font-size: 14px;
+        }
+
+        .product-card__price--from {
+            font-style: italic;
+        }
+
+        .product-card__sold-out {
+            display: inline-block;
+            margin-top: 5px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.6;
+        }
+
+        .product-card__sale-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .product-card__sale-price {
+            font-weight: 600;
+        }
+
+        .product-card__original-price {
+            text-decoration: line-through;
+            opacity: 0.6;
+            font-size: 13px;
+        }
+
+        .product-card__sale-badge {
+            display: inline-block;
+            margin-top: 5px;
+            padding: 3px 8px;
+            background: #D32F2F;
+            color: white;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Product Page */
+        .product {
+            padding: 40px 0;
+        }
+
+        .product__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .product__media img {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .product__info {
+            padding-top: 20px;
+        }
+
+        .product__title {
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+
+        .product__price {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .product__variant-selector {
+            margin-bottom: 20px;
+        }
+
+        .product__variant-selector label {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .product__variant-selector select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #E0E0E0;
+            background: #FFFFFF;
+            font-size: 14px;
+        }
+
+        .product__quantity {
+            margin-bottom: 20px;
+        }
+
+        .product__quantity label {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .product__quantity input {
+            width: 80px;
+            padding: 12px 15px;
+            border: 1px solid #E0E0E0;
+            text-align: center;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 1px solid #1A1A1A;
+            background: transparent;
+            color: #1A1A1A;
+            text-align: center;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: #1A1A1A;
+            color: #FFFFFF;
+            opacity: 1;
+        }
+
+        .button--primary {
+            background: #1A1A1A;
+            color: #FFFFFF;
+        }
+
+        .button--full {
+            width: 100%;
+        }
+
+        /* Accordion */
+        .accordion {
+            border-top: 1px solid #E0E0E0;
+            margin-top: 40px;
+        }
+
+        .accordion__item {
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .accordion__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 20px 0;
+            cursor: pointer;
+            text-align: left;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .accordion__icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion__item.active .accordion__icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion__content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion__item.active .accordion__content {
+            max-height: 500px;
+        }
+
+        .accordion__content-inner {
+            padding-bottom: 20px;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid #E0E0E0;
+            padding: 60px 0 40px;
+            margin-top: 80px;
+        }
+
+        .footer__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer__links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px 20px;
+            list-style: none;
+            font-size: 13px;
+        }
+
+        .footer__newsletter-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .footer__newsletter-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer__newsletter-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #E0E0E0;
+            font-size: 14px;
+        }
+
+        .footer__copyright {
+            text-align: center;
+            font-size: 12px;
+            opacity: 0.6;
+            padding-top: 40px;
+            border-top: 1px solid #E0E0E0;
+        }
+
+        /* Section */
+        .section {
+            padding: 40px 0;
+        }
+
+        .section--small {
+            padding: 20px 0;
+        }
+
+        /* Page Tabs */
+        .demo-tabs {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #1A1A1A;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+        }
+
+        .demo-tabs button {
+            color: white;
+            padding: 8px 15px;
+            margin: 2px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .demo-tabs button:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .demo-tabs button.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .page-view {
+            display: none;
+        }
+
+        .page-view.active {
+            display: block;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 989px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .product__grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer__grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media screen and (max-width: 749px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header__nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <div class="header__logo">
+                    <a href="#collection">Minimal Atelier</a>
+                </div>
+
+                <nav class="header__nav">
+                    <ul class="header__menu">
+                        <li class="header__menu-item"><a href="#collection">shop</a></li>
+                        <li class="header__menu-item"><a href="#collection">home</a></li>
+                        <li class="header__menu-item"><a href="#collection">lookbook</a></li>
+                        <li class="header__menu-item"><a href="#collection">archived collections</a></li>
+                        <li class="header__menu-item"><a href="#collection">press</a></li>
+                        <li class="header__menu-item"><a href="#collection">contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header__actions">
+                    <div class="header__locale-selector">
+                        <select>
+                            <option>english</option>
+                            <option>français</option>
+                        </select>
+                    </div>
+                    <a href="#" class="header__cart-link">
+                        <span class="cart-count" id="cartCount">2</span>
+                        cart
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Collection Page -->
+    <div id="collectionPage" class="page-view active">
+        <div class="section section--small">
+            <div class="container">
+                <div class="collection-header">
+                    <h1 class="collection-header__title">shop</h1>
+                    <div class="collection-header__description">
+                        Shop and discover our collections of sophisticated statement pieces, modern staples and
+                        sculptural objects, handcrafted with a dedication to responsible and timeless design.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section section--small">
+            <div class="container">
+                <div class="collection-categories">
+                    <span class="collection-categories__label">Categories:</span>
+                    <ul class="collection-categories__list">
+                        <li class="collection-categories__item"><a href="#">new</a></li>
+                        <li class="collection-categories__item"><a href="#">2025 - les archives</a></li>
+                        <li class="collection-categories__item"><a href="#">objects</a></li>
+                        <li class="collection-categories__item"><a href="#">one of a kind</a></li>
+                        <li class="collection-categories__item"><a href="#">sale + samples</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section product-grid">
+            <div class="container">
+                <div class="grid">
+                    <!-- Regular Product -->
+                    <div class="product-card">
+                        <a href="#product">
+                            <div class="product-card__image-wrapper">
+                                <div class="product-card__image"
+                                    style="background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);"></div>
+                            </div>
+                            <div class="product-card__info">
+                                <h3 class="product-card__title">TALON EAR CUFF</h3>
+                                <div class="product-card__price">
+                                    <span class="product-card__price-regular">$210.00</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Multi-variant Product -->
+                    <div class="product-card">
+                        <a href="#product">
+                            <div class="product-card__image-wrapper">
+                                <div class="product-card__image"
+                                    style="background: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 100%);"></div>
+                            </div>
+                            <div class="product-card__info">
+                                <h3 class="product-card__title">Cirrus Ring</h3>
+                                <div class="product-card__price">
+                                    <span class="product-card__price--from">from $230.00</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Regular Product 2 -->
+                    <div class="product-card">
+                        <a href="#product">
+                            <div class="product-card__image-wrapper">
+                                <div class="product-card__image"
+                                    style="background: linear-gradient(135deg, #f0f0f0 0%, #dadada 100%);"></div>
+                            </div>
+                            <div class="product-card__info">
+                                <h3 class="product-card__title">GOTHIC SCRIPT EARRINGS</h3>
+                                <div class="product-card__price">
+                                    <span class="product-card__price-regular">$220.00</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Sold Out Product -->
+                    <div class="product-card">
+                        <a href="#product">
+                            <div class="product-card__image-wrapper">
+                                <div class="product-card__image"
+                                    style="background: linear-gradient(135deg, #ebebeb 0%, #c8c8c8 100%);"></div>
+                            </div>
+                            <div class="product-card__info">
+                                <h3 class="product-card__title">THE SPINE CHOKER</h3>
+                                <div class="product-card__price">
+                                    <span class="product-card__price--from">from $490.00</span>
+                                    <span class="product-card__sold-out">Sold out</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Sale Product -->
+                    <div class="product-card">
+                        <a href="#product">
+                            <div class="product-card__image-wrapper">
+                                <div class="product-card__image"
+                                    style="background: linear-gradient(135deg, #f8f8f8 0%, #e5e5e5 100%);"></div>
+                            </div>
+                            <div class="product-card__info">
+                                <h3 class="product-card__title">Big Wave Ring</h3>
+                                <div class="product-card__price">
+                                    <div class="product-card__sale-info">
+                                        <div>
+                                            <span class="product-card__sale-price">Sale Price: $140.00</span>
+                                        </div>
+                                        <div>
+                                            <span class="product-card__original-price">Original Price: $220.00</span>
+                                        </div>
+                                        <span class="product-card__sale-badge">Sale</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Regular Product 3 -->
+                    <div class="product-card">
+                        <a href="#product">
+                            <div class="product-card__image-wrapper">
+                                <div class="product-card__image"
+                                    style="background: linear-gradient(135deg, #f3f3f3 0%, #d8d8d8 100%);"></div>
+                            </div>
+                            <div class="product-card__info">
+                                <h3 class="product-card__title">The Tie Hoops</h3>
+                                <div class="product-card__price">
+                                    <span class="product-card__price-regular">$270.00</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Page -->
+    <div id="productPage" class="page-view">
+        <div class="section product">
+            <div class="container">
+                <div class="product__grid">
+                    <div class="product__media">
+                        <div
+                            style="width: 100%; padding-bottom: 125%; background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%); margin-bottom: 10px;">
+                        </div>
+                        <div
+                            style="width: 100%; padding-bottom: 125%; background: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 100%); margin-bottom: 10px;">
+                        </div>
+                    </div>
+
+                    <div class="product__info">
+                        <h1 class="product__title">Cirrus Ring</h1>
+
+                        <div class="product__price">
+                            <span>$230.00</span>
+                        </div>
+
+                        <form class="product__form">
+                            <div class="product__variant-selector">
+                                <label for="variant">Select Option</label>
+                                <select id="variant">
+                                    <option>Size 5 - $230.00</option>
+                                    <option>Size 6 - $230.00</option>
+                                    <option>Size 7 - $240.00</option>
+                                    <option>Size 8 - $240.00</option>
+                                </select>
+                            </div>
+
+                            <div class="product__quantity">
+                                <label for="quantity">Quantity</label>
+                                <input type="number" id="quantity" value="1" min="1">
+                            </div>
+
+                            <button type="button" class="button button--primary button--full" onclick="addToCart()">
+                                Add to Cart
+                            </button>
+                        </form>
+
+                        <div class="accordion">
+                            <div class="accordion__item">
+                                <button class="accordion__header" onclick="toggleAccordion(this)">
+                                    <span>About</span>
+                                    <span class="accordion__icon">▼</span>
+                                </button>
+                                <div class="accordion__content">
+                                    <div class="accordion__content-inner">
+                                        Handcrafted with dedication to sustainable and timeless design.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion__item">
+                                <button class="accordion__header" onclick="toggleAccordion(this)">
+                                    <span>Shipping & Pick-up</span>
+                                    <span class="accordion__icon">▼</span>
+                                </button>
+                                <div class="accordion__content">
+                                    <div class="accordion__content-inner">
+                                        We offer worldwide shipping and local pick-up options.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion__item">
+                                <button class="accordion__header" onclick="toggleAccordion(this)">
+                                    <span>Jewelry Care</span>
+                                    <span class="accordion__icon">▼</span>
+                                </button>
+                                <div class="accordion__content">
+                                    <div class="accordion__content-inner">
+                                        Clean with a soft polishing cloth. Store in a dry place.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion__item">
+                                <button class="accordion__header" onclick="toggleAccordion(this)">
+                                    <span>Sales Terms & Exchange</span>
+                                    <span class="accordion__icon">▼</span>
+                                </button>
+                                <div class="accordion__content">
+                                    <div class="accordion__content-inner">
+                                        All sales are final. Exchanges within 14 days with original packaging.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion__item">
+                                <button class="accordion__header" onclick="toggleAccordion(this)">
+                                    <span>Custom Projects info</span>
+                                    <span class="accordion__icon">▼</span>
+                                </button>
+                                <div class="accordion__content">
+                                    <div class="accordion__content-inner">
+                                        Contact us for custom project inquiries and commissions.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__links-wrapper">
+                    <ul class="footer__links">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Shipping & Pick-up</a></li>
+                        <li><a href="#">Jewelry Care</a></li>
+                        <li><a href="#">Sales Terms & Exchange</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Stockists</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__newsletter">
+                    <h3 class="footer__newsletter-title">Newsletter</h3>
+                    <form class="footer__newsletter-form" onsubmit="return subscribeNewsletter(event)">
+                        <input type="email" class="footer__newsletter-input" placeholder="Your email" required>
+                        <button type="submit" class="button">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer__copyright">
+                Minimal Atelier © 2026
+            </div>
+        </div>
+    </footer>
+
+    <!-- Demo Page Switcher -->
+    <div class="demo-tabs">
+        <div style="font-size: 10px; margin-bottom: 5px; opacity: 0.7;">DEMO VIEW:</div>
+        <button onclick="showPage('collection')" class="active" id="btnCollection">Collection</button>
+        <button onclick="showPage('product')" id="btnProduct">Product</button>
+    </div>
+
+    <script>
+        // Page Switcher
+        function showPage(page) {
+            document.querySelectorAll('.page-view').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.demo-tabs button').forEach(btn => btn.classList.remove('active'));
+
+            if (page === 'collection') {
+                document.getElementById('collectionPage').classList.add('active');
+                document.getElementById('btnCollection').classList.add('active');
+            } else if (page === 'product') {
+                document.getElementById('productPage').classList.add('active');
+                document.getElementById('btnProduct').classList.add('active');
+            }
+        }
+
+        // Accordion Toggle
+        function toggleAccordion(button) {
+            const item = button.parentElement;
+            const isActive = item.classList.contains('active');
+
+            // Close all accordions
+            document.querySelectorAll('.accordion__item').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // Open clicked accordion if it wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Add to Cart
+        function addToCart() {
+            const button = event.target;
+            const originalText = button.textContent;
+
+            button.textContent = 'Adding...';
+            button.disabled = true;
+
+            setTimeout(() => {
+                // Increment cart count
+                const cartCount = document.getElementById('cartCount');
+                const currentCount = parseInt(cartCount.textContent);
+                cartCount.textContent = currentCount + 1;
+
+                button.textContent = 'Added to Cart!';
+
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.disabled = false;
+                }, 2000);
+            }, 800);
+        }
+
+        // Newsletter Subscribe
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            const input = event.target.querySelector('input');
+            const button = event.target.querySelector('button');
+            const originalText = button.textContent;
+
+            button.textContent = 'Subscribing...';
+
+            setTimeout(() => {
+                button.textContent = 'Subscribed!';
+                input.value = '';
+
+                setTimeout(() => {
+                    button.textContent = originalText;
+                }, 2000);
+            }, 800);
+
+            return false;
+        }
+
+        // Handle anchor links to switch pages
+        document.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A' && e.target.getAttribute('href') === '#product') {
+                e.preventDefault();
+                showPage('product');
+                window.scrollTo(0, 0);
+            } else if (e.target.tagName === 'A' && e.target.getAttribute('href') === '#collection') {
+                e.preventDefault();
+                showPage('collection');
+                window.scrollTo(0, 0);
+            }
+        });
+    </script>
+</body>
+
+</html>

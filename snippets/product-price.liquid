@@ -1,0 +1,20 @@
+{% comment %}
+  Product Price Snippet
+  Displays price with sale logic
+{% endcomment %}
+
+{%- liquid
+  assign on_sale = false
+  if product.compare_at_price > product.price
+    assign on_sale = true
+  endif
+-%}
+
+{%- if on_sale -%}
+  <div class="product__price--on-sale">
+    <span class="price__sale">{{ product.price | money }}</span>
+    <span class="price__regular">{{ product.compare_at_price | money }}</span>
+  </div>
+{%- else -%}
+  <span class="price__regular">{{ product.price | money }}</span>
+{%- endif -%}

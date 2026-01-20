@@ -1,0 +1,104 @@
+{% comment %}
+  Footer Section
+  - Navigation links
+  - Newsletter signup
+  - Copyright
+{% endcomment %}
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      {%- comment -%} Footer Links {%- endcomment -%}
+      <div class="footer__links-wrapper">
+        <ul class="footer__links">
+          {%- for link in section.settings.footer_menu.links -%}
+            <li>
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      {%- comment -%} Newsletter {%- endcomment -%}
+      {%- if section.settings.show_newsletter -%}
+        <div class="footer__newsletter">
+          <h3 class="footer__newsletter-title">{{ section.settings.newsletter_title }}</h3>
+          <form method="post" action="/contact#contact_form" class="footer__newsletter-form" accept-charset="UTF-8">
+            <input type="hidden" name="form_type" value="customer">
+            <input type="hidden" name="utf8" value="✓">
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <input type="email" 
+                   name="contact[email]" 
+                   class="footer__newsletter-input" 
+                   placeholder="{{ section.settings.newsletter_placeholder }}" 
+                   required>
+            <button type="submit" class="button">{{ section.settings.newsletter_button_text }}</button>
+          </form>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.show_copyright -%}
+      <div class="footer__copyright">
+        {{ section.settings.copyright_text | default: shop.name }} © {{ 'now' | date: '%Y' }}
+      </div>
+    {%- endif -%}
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "footer_menu",
+      "label": "Footer Menu",
+      "default": "footer"
+    },
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "label": "Show Newsletter Signup",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "newsletter_title",
+      "label": "Newsletter Title",
+      "default": "Newsletter"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_placeholder",
+      "label": "Email Placeholder",
+      "default": "Your email"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_button_text",
+      "label": "Button Text",
+      "default": "Subscribe"
+    },
+    {
+      "type": "header",
+      "content": "Copyright"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_copyright",
+      "label": "Show Copyright",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright Text"
+    }
+  ]
+}
+{% endschema %}

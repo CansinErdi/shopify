@@ -1,0 +1,13 @@
+{
+    "sections": {
+        "hero": {
+            "type": "collection-intro",
+            "settings": {
+                "default_description": "<p>Welcome to our shop. Discover handcrafted pieces made with dedication to sustainable and timeless design.</p>"
+            }
+        }
+    },
+    "order": [
+        "hero"
+    ]
+}

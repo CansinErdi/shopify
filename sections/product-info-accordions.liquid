@@ -1,0 +1,128 @@
+{% comment %}
+  Product Info Accordions Section
+  - About
+  - Shipping & Pick-up
+  - Jewelry Care
+  - Sales Terms & Exchange
+  - Custom Projects info
+  All content editable from theme settings
+{% endcomment %}
+
+<div class="section section--small">
+  <div class="container">
+    <div class="accordion">
+      {%- comment -%} About {%- endcomment -%}
+      {%- if settings.product_info_about != blank -%}
+        <div class="accordion__item">
+          <button class="accordion__header" aria-expanded="false">
+            <span>{{ section.settings.accordion_about_title }}</span>
+            <span class="accordion__icon">▼</span>
+          </button>
+          <div class="accordion__content">
+            <div class="accordion__content-inner">
+              {{ settings.product_info_about }}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Shipping & Pick-up {%- endcomment -%}
+      {%- if settings.product_info_shipping != blank -%}
+        <div class="accordion__item">
+          <button class="accordion__header" aria-expanded="false">
+            <span>{{ section.settings.accordion_shipping_title }}</span>
+            <span class="accordion__icon">▼</span>
+          </button>
+          <div class="accordion__content">
+            <div class="accordion__content-inner">
+              {{ settings.product_info_shipping }}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Care {%- endcomment -%}
+      {%- if settings.product_info_care != blank -%}
+        <div class="accordion__item">
+          <button class="accordion__header" aria-expanded="false">
+            <span>{{ section.settings.accordion_care_title }}</span>
+            <span class="accordion__icon">▼</span>
+          </button>
+          <div class="accordion__content">
+            <div class="accordion__content-inner">
+              {{ settings.product_info_care }}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Sales Terms & Exchange {%- endcomment -%}
+      {%- if settings.product_info_terms != blank -%}
+        <div class="accordion__item">
+          <button class="accordion__header" aria-expanded="false">
+            <span>{{ section.settings.accordion_terms_title }}</span>
+            <span class="accordion__icon">▼</span>
+          </button>
+          <div class="accordion__content">
+            <div class="accordion__content-inner">
+              {{ settings.product_info_terms }}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Custom Projects {%- endcomment -%}
+      {%- if settings.product_info_custom != blank -%}
+        <div class="accordion__item">
+          <button class="accordion__header" aria-expanded="false">
+            <span>{{ section.settings.accordion_custom_title }}</span>
+            <span class="accordion__icon">▼</span>
+          </button>
+          <div class="accordion__content">
+            <div class="accordion__content-inner">
+              {{ settings.product_info_custom }}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Info Accordions",
+  "settings": [
+    {
+      "type": "text",
+      "id": "accordion_about_title",
+      "label": "About Title",
+      "default": "About"
+    },
+    {
+      "type": "text",
+      "id": "accordion_shipping_title",
+      "label": "Shipping Title",
+      "default": "Shipping & Pick-up"
+    },
+    {
+      "type": "text",
+      "id": "accordion_care_title",
+      "label": "Care Title",
+      "default": "Jewelry Care"
+    },
+    {
+      "type": "text",
+      "id": "accordion_terms_title",
+      "label": "Sales Terms Title",
+      "default": "Sales Terms & Exchange"
+    },
+    {
+      "type": "text",
+      "id": "accordion_custom_title",
+      "label": "Custom Projects Title",
+      "default": "Custom Projects info"
+    }
+  ]
+}
+{% endschema %}

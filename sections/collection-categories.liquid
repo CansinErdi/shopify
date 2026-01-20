@@ -1,0 +1,37 @@
+{% comment %}
+  Collection Categories Section
+  - Shows "Categories:" label
+  - Lists all collections horizontally with pipe separators
+{% endcomment %}
+
+<div class="section section--small">
+  <div class="container">
+    <div class="collection-categories">
+      <span class="collection-categories__label">{{ section.settings.label }}:</span>
+      
+      <ul class="collection-categories__list">
+        {%- for collection_item in collections -%}
+          {%- if collection_item.all_products_count > 0 -%}
+            <li class="collection-categories__item">
+              <a href="{{ collection_item.url }}">{{ collection_item.title | downcase }}</a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection Categories",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "Categories"
+    }
+  ]
+}
+{% endschema %}

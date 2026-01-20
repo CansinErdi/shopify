@@ -1,0 +1,71 @@
+{% comment %}
+  Collection Product Grid Section
+  - Displays products in a responsive grid
+  - Uses product-card snippet for each product
+{% endcomment %}
+
+<div class="section product-grid">
+  <div class="container">
+    {%- paginate collection.products by section.settings.products_per_page -%}
+      <div class="grid grid--{{ section.settings.columns_desktop }}-col">
+        {%- for product in collection.products -%}
+          {%- render 'product-card', product: product -%}
+        {%- else -%}
+          <div class="collection-empty">
+            <p>{{ 'collections.general.no_products' | t }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if paginate.pages > 1 -%}
+        <div class="pagination">
+          {%- if paginate.previous -%}
+            <a href="{{ paginate.previous.url }}" class="pagination__prev">
+              {{ 'general.pagination.previous' | t }}
+            </a>
+          {%- endif -%}
+
+          {%- for part in paginate.parts -%}
+            {%- if part.is_link -%}
+              <a href="{{ part.url }}" class="pagination__link">{{ part.title }}</a>
+            {%- else -%}
+              <span class="pagination__current">{{ part.title }}</span>
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- if paginate.next -%}
+            <a href="{{ paginate.next.url }}" class="pagination__next">
+              {{ 'general.pagination.next' | t }}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection Product Grid",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products Per Page",
+      "min": 12,
+      "max": 50,
+      "step": 6,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Columns (Desktop)",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    }
+  ]
+}
+{% endschema %}

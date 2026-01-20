@@ -1,0 +1,154 @@
+[
+    {
+        "name": "theme_info",
+        "theme_name": "Minimal Atelier",
+        "theme_version": "1.0.0",
+        "theme_author": "Custom",
+        "theme_documentation_url": "",
+        "theme_support_url": ""
+    },
+    {
+        "name": "Colors",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Color Scheme"
+            },
+            {
+                "type": "color",
+                "id": "color_background",
+                "label": "Background",
+                "default": "#FFFFFF"
+            },
+            {
+                "type": "color",
+                "id": "color_text",
+                "label": "Text",
+                "default": "#1A1A1A"
+            },
+            {
+                "type": "color",
+                "id": "color_border",
+                "label": "Borders",
+                "default": "#E0E0E0"
+            },
+            {
+                "type": "color",
+                "id": "color_accent",
+                "label": "Accent",
+                "default": "#1A1A1A"
+            },
+            {
+                "type": "color",
+                "id": "color_sale",
+                "label": "Sale Badge",
+                "default": "#D32F2F"
+            }
+        ]
+    },
+    {
+        "name": "Typography",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Font Settings"
+            },
+            {
+                "type": "font_picker",
+                "id": "font_body",
+                "label": "Body Font",
+                "default": "assistant_n4"
+            },
+            {
+                "type": "range",
+                "id": "font_body_size",
+                "label": "Body Font Size",
+                "min": 12,
+                "max": 20,
+                "step": 1,
+                "unit": "px",
+                "default": 14
+            },
+            {
+                "type": "font_picker",
+                "id": "font_heading",
+                "label": "Heading Font",
+                "default": "assistant_n4"
+            }
+        ]
+    },
+    {
+        "name": "Layout",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Spacing"
+            },
+            {
+                "type": "range",
+                "id": "layout_spacing",
+                "label": "Section Spacing",
+                "min": 20,
+                "max": 100,
+                "step": 10,
+                "unit": "px",
+                "default": 40
+            }
+        ]
+    },
+    {
+        "name": "Product Info Accordions",
+        "settings": [
+            {
+                "type": "header",
+                "content": "About Section"
+            },
+            {
+                "type": "richtext",
+                "id": "product_info_about",
+                "label": "About Content",
+                "default": "<p>Product information and details.</p>"
+            },
+            {
+                "type": "header",
+                "content": "Shipping & Pick-up"
+            },
+            {
+                "type": "richtext",
+                "id": "product_info_shipping",
+                "label": "Shipping & Pick-up Content",
+                "default": "<p>Shipping and pick-up information.</p>"
+            },
+            {
+                "type": "header",
+                "content": "Care Instructions"
+            },
+            {
+                "type": "richtext",
+                "id": "product_info_care",
+                "label": "Care Content",
+                "default": "<p>Care instructions for your jewelry.</p>"
+            },
+            {
+                "type": "header",
+                "content": "Sales Terms & Exchange"
+            },
+            {
+                "type": "richtext",
+                "id": "product_info_terms",
+                "label": "Sales Terms Content",
+                "default": "<p>Sales terms and exchange policy.</p>"
+            },
+            {
+                "type": "header",
+                "content": "Custom Projects"
+            },
+            {
+                "type": "richtext",
+                "id": "product_info_custom",
+                "label": "Custom Projects Content",
+                "default": "<p>Information about custom projects.</p>"
+            }
+        ]
+    }
+]

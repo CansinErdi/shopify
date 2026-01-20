@@ -1,0 +1,115 @@
+{% comment %}
+  Product Main Section
+  - Product media gallery
+  - Product title
+  - Price display
+  - Variant selector
+  - Quantity selector
+  - Add to cart button
+{% endcomment %}
+
+<div class="section product">
+  <div class="container">
+    <div class="product__grid">
+      {%- comment -%} Product Media {%- endcomment -%}
+      <div class="product__media">
+        {%- if product.media.size > 0 -%}
+          {%- for media in product.media -%}
+            <div class="product__media-item">
+              {%- case media.media_type -%}
+                {%- when 'image' -%}
+                  <img src="{{ media | image_url: width: 1200 }}"
+                       alt="{{ media.alt | escape }}"
+                       loading="lazy"
+                       width="1200"
+                       height="1500">
+                {%- when 'video' or 'external_video' -%}
+                  {{ media | media_tag: image_size: '1200x' }}
+              {%- endcase -%}
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          <div class="product__media-placeholder" style="background: #f5f5f5; padding-bottom: 125%;"></div>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Product Info {%- endcomment -%}
+      <div class="product__info">
+        <h1 class="product__title">{{ product.title }}</h1>
+
+        <div class="product__price" id="price-{{ section.id }}">
+          {%- render 'product-price', product: product -%}
+        </div>
+
+        {%- form 'product', product, class: 'product__form product-form' -%}
+          {%- if product.variants.size > 1 -%}
+            <div class="product__variant-selector">
+              <label for="variant-{{ section.id }}">{{ section.settings.variant_label }}</label>
+              <select name="id" 
+                      id="variant-{{ section.id }}" 
+                      class="product__variant-select"
+                      onchange="updateVariantPrice(this)">
+                {%- for variant in product.variants -%}
+                  <option value="{{ variant.id }}"
+                          {% if variant == product.selected_or_first_available_variant %}selected{% endif %}
+                          {% unless variant.available %}disabled{% endunless %}
+                          data-price="{{ variant.price | money }}">
+                    {{ variant.title }}
+                    {%- unless variant.available %} - Sold out{% endunless %}
+                  </option>
+                {%- endfor -%}
+              </select>
+            </div>
+          {%- else -%}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          {%- endif -%}
+
+          <div class="product__quantity">
+            <label for="quantity-{{ section.id }}">{{ 'products.product.quantity' | t }}</label>
+            <input type="number" 
+                   name="quantity" 
+                   id="quantity-{{ section.id }}" 
+                   value="1" 
+                   min="1">
+          </div>
+
+          <button type="submit" 
+                  class="button button--primary button--full product__add-button"
+                  {% unless product.available %}disabled{% endunless %}>
+            {%- if product.available -%}
+              {{ 'products.product.add_to_cart' | t }}
+            {%- else -%}
+              {{ 'products.product.sold_out' | t }}
+            {%- endif -%}
+          </button>
+
+          {%- if section.settings.show_description and product.description != blank -%}
+            <div class="product__description">
+              {{ product.description }}
+            </div>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Main",
+  "settings": [
+    {
+      "type": "text",
+      "id": "variant_label",
+      "label": "Variant Label",
+      "default": "Select Option"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show Product Description",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

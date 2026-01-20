@@ -1,0 +1,89 @@
+{% comment %}
+  Product Card Snippet
+  - Product image
+  - Product title
+  - Smart pricing logic:
+    a) "from $X" when variants have different prices
+    b) "Sold out" badge
+    c) Sale pricing with "Sale Price / Original Price / Sale" badge
+{% endcomment %}
+
+{%- liquid
+  assign has_multiple_prices = false
+  assign lowest_price = product.price
+  assign highest_price = product.price
+  
+  if product.variants.size > 1
+    for variant in product.variants
+      if variant.price < lowest_price
+        assign lowest_price = variant.price
+      endif
+      if variant.price > highest_price
+        assign highest_price = variant.price
+      endif
+    endfor
+    
+    if lowest_price != highest_price
+      assign has_multiple_prices = true
+    endif
+  endif
+  
+  assign on_sale = false
+  if product.compare_at_price > product.price
+    assign on_sale = true
+  endif
+  
+  assign sold_out = true
+  if product.available
+    assign sold_out = false
+  endif
+-%}
+
+<div class="product-card">
+  <a href="{{ product.url }}" class="product-card__link">
+    <div class="product-card__image-wrapper">
+      {%- if product.featured_image -%}
+        <img class="product-card__image"
+             src="{{ product.featured_image | image_url: width: 600 }}"
+             alt="{{ product.featured_image.alt | escape }}"
+             loading="lazy"
+             width="600"
+             height="750">
+      {%- else -%}
+        <div class="product-card__image" style="background: #f5f5f5;"></div>
+      {%- endif -%}
+    </div>
+    
+    <div class="product-card__info">
+      <h3 class="product-card__title">{{ product.title }}</h3>
+      
+      <div class="product-card__price">
+        {%- if sold_out -%}
+          {%- comment -%} Sold Out {%- endcomment -%}
+          <span class="product-card__price-regular">{{ product.price | money }}</span>
+          <span class="product-card__sold-out">Sold out</span>
+          
+        {%- elsif on_sale -%}
+          {%- comment -%} On Sale {%- endcomment -%}
+          <div class="product-card__sale-info">
+            <div>
+              <span class="product-card__sale-price">Sale Price: {{ product.price | money }}</span>
+            </div>
+            <div>
+              <span class="product-card__original-price">Original Price: {{ product.compare_at_price | money }}</span>
+            </div>
+            <span class="product-card__sale-badge">Sale</span>
+          </div>
+          
+        {%- elsif has_multiple_prices -%}
+          {%- comment -%} Multiple Variant Prices {%- endcomment -%}
+          <span class="product-card__price--from">from {{ lowest_price | money }}</span>
+          
+        {%- else -%}
+          {%- comment -%} Regular Price {%- endcomment -%}
+          <span class="product-card__price-regular">{{ product.price | money }}</span>
+        {%- endif -%}
+      </div>
+    </div>
+  </a>
+</div>
