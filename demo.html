@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minimal Atelier - Theme Demo</title>
+    <title>Minimal Atelier - Jewelry Collection</title>
     <style>
-        /* CSS Reset */
+        /* Base Styles */
         *,
         *::before,
         *::after {
@@ -45,13 +45,6 @@
 
         a:hover {
             opacity: 0.7;
-        }
-
-        button {
-            cursor: pointer;
-            border: none;
-            background: transparent;
-            font-family: inherit;
         }
 
         /* Container */
@@ -151,10 +144,13 @@
         }
 
         .collection-header__description {
-            max-width: 800px;
-            margin: 0 auto;
+            max-width: 900px;
+            margin: 0 auto 40px;
             line-height: 1.8;
-            opacity: 0.9;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 400;
         }
 
         /* Collection Categories */
@@ -198,20 +194,21 @@
 
         .grid {
             display: grid;
-            gap: 20px;
+            gap: 30px;
             grid-template-columns: repeat(3, 1fr);
         }
 
         .product-card {
             display: block;
+            background: white;
         }
 
         .product-card__image-wrapper {
             position: relative;
-            padding-bottom: 125%;
+            padding-bottom: 100%;
             margin-bottom: 15px;
             overflow: hidden;
-            background: #f9f9f9;
+            background: #F8F8F8;
         }
 
         .product-card__image {
@@ -230,12 +227,14 @@
 
         .product-card__info {
             text-align: center;
+            padding: 10px;
         }
 
         .product-card__title {
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 400;
             margin-bottom: 8px;
+            text-transform: capitalize;
         }
 
         .product-card__price {
@@ -247,40 +246,12 @@
         }
 
         .product-card__sold-out {
-            display: inline-block;
+            display: block;
             margin-top: 5px;
             font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
             opacity: 0.6;
-        }
-
-        .product-card__sale-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-        }
-
-        .product-card__sale-price {
-            font-weight: 600;
-        }
-
-        .product-card__original-price {
-            text-decoration: line-through;
-            opacity: 0.6;
-            font-size: 13px;
-        }
-
-        .product-card__sale-badge {
-            display: inline-block;
-            margin-top: 5px;
-            padding: 3px 8px;
-            background: #D32F2F;
-            color: white;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         /* Product Page */
@@ -298,6 +269,7 @@
         .product__media img {
             width: 100%;
             margin-bottom: 10px;
+            border-radius: 4px;
         }
 
         .product__info {
@@ -312,7 +284,14 @@
 
         .product__price {
             font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .product__description {
+            font-size: 14px;
+            line-height: 1.8;
             margin-bottom: 30px;
+            color: #666;
         }
 
         .product__variant-selector {
@@ -479,16 +458,7 @@
             border-top: 1px solid #E0E0E0;
         }
 
-        /* Section */
-        .section {
-            padding: 40px 0;
-        }
-
-        .section--small {
-            padding: 20px 0;
-        }
-
-        /* Page Tabs */
+        /* Demo Switcher */
         .demo-tabs {
             position: fixed;
             bottom: 20px;
@@ -525,7 +495,6 @@
             display: block;
         }
 
-        /* Responsive */
         @media screen and (max-width: 989px) {
             .grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -568,8 +537,7 @@
                         <li class="header__menu-item"><a href="#collection">shop</a></li>
                         <li class="header__menu-item"><a href="#collection">home</a></li>
                         <li class="header__menu-item"><a href="#collection">lookbook</a></li>
-                        <li class="header__menu-item"><a href="#collection">archived collections</a></li>
-                        <li class="header__menu-item"><a href="#collection">press</a></li>
+                        <li class="header__menu-item"><a href="#collection">about</a></li>
                         <li class="header__menu-item"><a href="#collection">contact</a></li>
                     </ul>
                 </nav>
@@ -582,7 +550,7 @@
                         </select>
                     </div>
                     <a href="#" class="header__cart-link">
-                        <span class="cart-count" id="cartCount">2</span>
+                        <span class="cart-count" id="cartCount">0</span>
                         cart
                     </a>
                 </div>
@@ -595,10 +563,10 @@
         <div class="section section--small">
             <div class="container">
                 <div class="collection-header">
-                    <h1 class="collection-header__title">shop</h1>
+                    <h1 class="collection-header__title">handcrafted jewelry collection</h1>
                     <div class="collection-header__description">
-                        Shop and discover our collections of sophisticated statement pieces, modern staples and
-                        sculptural objects, handcrafted with a dedication to responsible and timeless design.
+                        A collection of wearable objects and assembled pieces, created with a focus on material,
+                        structure and everyday use. Each piece is made in small quantities and assembled by hand.
                     </div>
                 </div>
             </div>
@@ -609,11 +577,10 @@
                 <div class="collection-categories">
                     <span class="collection-categories__label">Categories:</span>
                     <ul class="collection-categories__list">
-                        <li class="collection-categories__item"><a href="#">new</a></li>
-                        <li class="collection-categories__item"><a href="#">2025 - les archives</a></li>
-                        <li class="collection-categories__item"><a href="#">objects</a></li>
-                        <li class="collection-categories__item"><a href="#">one of a kind</a></li>
-                        <li class="collection-categories__item"><a href="#">sale + samples</a></li>
+                        <li class="collection-categories__item"><a href="#">necklaces</a></li>
+                        <li class="collection-categories__item"><a href="#">earrings</a></li>
+                        <li class="collection-categories__item"><a href="#">new arrivals</a></li>
+                        <li class="collection-categories__item"><a href="#">best sellers</a></li>
                     </ul>
                 </div>
             </div>
@@ -622,106 +589,65 @@
         <div class="section product-grid">
             <div class="container">
                 <div class="grid">
-                    <!-- Regular Product -->
+                    <!-- Product 1: Cascade Pearl Necklace -->
                     <div class="product-card">
-                        <a href="#product">
+                        <a href="#" onclick="showProduct(0); return false;">
                             <div class="product-card__image-wrapper">
-                                <div class="product-card__image"
-                                    style="background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);"></div>
+                                <img src="assets/product-1-cascade-pearl-necklace.jpg" alt="Cascade Pearl Necklace"
+                                    class="product-card__image">
                             </div>
                             <div class="product-card__info">
-                                <h3 class="product-card__title">TALON EAR CUFF</h3>
+                                <h3 class="product-card__title">Cascade Pearl Necklace</h3>
                                 <div class="product-card__price">
-                                    <span class="product-card__price-regular">$210.00</span>
+                                    <span class="product-card__price-regular">$185.00</span>
                                 </div>
                             </div>
                         </a>
                     </div>
 
-                    <!-- Multi-variant Product -->
+                    <!-- Product 2: Crystal Wire Necklace -->
                     <div class="product-card">
-                        <a href="#product">
+                        <a href="#" onclick="showProduct(1); return false;">
                             <div class="product-card__image-wrapper">
-                                <div class="product-card__image"
-                                    style="background: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 100%);"></div>
+                                <img src="assets/product-2-crystal-wire-necklace.jpg" alt="Crystal Wire Necklace"
+                                    class="product-card__image">
                             </div>
                             <div class="product-card__info">
-                                <h3 class="product-card__title">Cirrus Ring</h3>
+                                <h3 class="product-card__title">Crystal Wire Necklace</h3>
                                 <div class="product-card__price">
-                                    <span class="product-card__price--from">from $230.00</span>
+                                    <span class="product-card__price--from">from $165.00</span>
                                 </div>
                             </div>
                         </a>
                     </div>
 
-                    <!-- Regular Product 2 -->
+                    <!-- Product 3: Pearl & Shell Earrings -->
                     <div class="product-card">
-                        <a href="#product">
+                        <a href="#" onclick="showProduct(2); return false;">
                             <div class="product-card__image-wrapper">
-                                <div class="product-card__image"
-                                    style="background: linear-gradient(135deg, #f0f0f0 0%, #dadada 100%);"></div>
+                                <img src="assets/product-3-pearl-shell-earrings.jpg" alt="Pearl & Shell Earrings"
+                                    class="product-card__image">
                             </div>
                             <div class="product-card__info">
-                                <h3 class="product-card__title">GOTHIC SCRIPT EARRINGS</h3>
+                                <h3 class="product-card__title">Pearl & Shell Earrings</h3>
                                 <div class="product-card__price">
-                                    <span class="product-card__price-regular">$220.00</span>
+                                    <span class="product-card__price-regular">$95.00</span>
                                 </div>
                             </div>
                         </a>
                     </div>
 
-                    <!-- Sold Out Product -->
+                    <!-- Product 4: Minimalist Pearl Choker -->
                     <div class="product-card">
-                        <a href="#product">
+                        <a href="#" onclick="showProduct(3); return false;">
                             <div class="product-card__image-wrapper">
-                                <div class="product-card__image"
-                                    style="background: linear-gradient(135deg, #ebebeb 0%, #c8c8c8 100%);"></div>
+                                <img src="assets/product-4-minimalist-pearl-choker.jpg" alt="Minimalist Pearl Choker"
+                                    class="product-card__image">
                             </div>
                             <div class="product-card__info">
-                                <h3 class="product-card__title">THE SPINE CHOKER</h3>
+                                <h3 class="product-card__title">Minimalist Pearl Choker</h3>
                                 <div class="product-card__price">
-                                    <span class="product-card__price--from">from $490.00</span>
-                                    <span class="product-card__sold-out">Sold out</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- Sale Product -->
-                    <div class="product-card">
-                        <a href="#product">
-                            <div class="product-card__image-wrapper">
-                                <div class="product-card__image"
-                                    style="background: linear-gradient(135deg, #f8f8f8 0%, #e5e5e5 100%);"></div>
-                            </div>
-                            <div class="product-card__info">
-                                <h3 class="product-card__title">Big Wave Ring</h3>
-                                <div class="product-card__price">
-                                    <div class="product-card__sale-info">
-                                        <div>
-                                            <span class="product-card__sale-price">Sale Price: $140.00</span>
-                                        </div>
-                                        <div>
-                                            <span class="product-card__original-price">Original Price: $220.00</span>
-                                        </div>
-                                        <span class="product-card__sale-badge">Sale</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- Regular Product 3 -->
-                    <div class="product-card">
-                        <a href="#product">
-                            <div class="product-card__image-wrapper">
-                                <div class="product-card__image"
-                                    style="background: linear-gradient(135deg, #f3f3f3 0%, #d8d8d8 100%);"></div>
-                            </div>
-                            <div class="product-card__info">
-                                <h3 class="product-card__title">The Tie Hoops</h3>
-                                <div class="product-card__price">
-                                    <span class="product-card__price-regular">$270.00</span>
+                                    <span class="product-card__price-regular">$145.00</span>
                                 </div>
                             </div>
                         </a>
@@ -731,36 +657,24 @@
         </div>
     </div>
 
-    <!-- Product Page -->
+    <!-- Product Page Template (will be populated dynamically) -->
     <div id="productPage" class="page-view">
         <div class="section product">
             <div class="container">
                 <div class="product__grid">
-                    <div class="product__media">
-                        <div
-                            style="width: 100%; padding-bottom: 125%; background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%); margin-bottom: 10px;">
-                        </div>
-                        <div
-                            style="width: 100%; padding-bottom: 125%; background: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 100%); margin-bottom: 10px;">
-                        </div>
+                    <div class="product__media" id="productMedia">
+                        <!-- Loaded dynamically -->
                     </div>
 
                     <div class="product__info">
-                        <h1 class="product__title">Cirrus Ring</h1>
-
-                        <div class="product__price">
-                            <span>$230.00</span>
-                        </div>
+                        <h1 class="product__title" id="productTitle"></h1>
+                        <div class="product__price" id="productPrice"></div>
+                        <div class="product__description" id="productDescription"></div>
 
                         <form class="product__form">
-                            <div class="product__variant-selector">
-                                <label for="variant">Select Option</label>
-                                <select id="variant">
-                                    <option>Size 5 - $230.00</option>
-                                    <option>Size 6 - $230.00</option>
-                                    <option>Size 7 - $240.00</option>
-                                    <option>Size 8 - $240.00</option>
-                                </select>
+                            <div class="product__variant-selector" id="productVariants" style="display: none;">
+                                <label for="variant">Select Size</label>
+                                <select id="variant"></select>
                             </div>
 
                             <div class="product__quantity">
@@ -776,60 +690,40 @@
                         <div class="accordion">
                             <div class="accordion__item">
                                 <button class="accordion__header" onclick="toggleAccordion(this)">
-                                    <span>About</span>
+                                    <span>Materials & Care</span>
                                     <span class="accordion__icon">▼</span>
                                 </button>
                                 <div class="accordion__content">
                                     <div class="accordion__content-inner">
-                                        Handcrafted with dedication to sustainable and timeless design.
+                                        Handcrafted with genuine pearls and premium materials. Clean with a soft cloth
+                                        and store in a dry place away from direct sunlight.
                                     </div>
                                 </div>
                             </div>
 
                             <div class="accordion__item">
                                 <button class="accordion__header" onclick="toggleAccordion(this)">
-                                    <span>Shipping & Pick-up</span>
+                                    <span>Shipping & Returns</span>
                                     <span class="accordion__icon">▼</span>
                                 </button>
                                 <div class="accordion__content">
                                     <div class="accordion__content-inner">
-                                        We offer worldwide shipping and local pick-up options.
+                                        Free shipping on orders over $150. Returns accepted within 14 days of delivery
+                                        with original packaging.
                                     </div>
                                 </div>
                             </div>
 
                             <div class="accordion__item">
                                 <button class="accordion__header" onclick="toggleAccordion(this)">
-                                    <span>Jewelry Care</span>
+                                    <span>About Our Craft</span>
                                     <span class="accordion__icon">▼</span>
                                 </button>
                                 <div class="accordion__content">
                                     <div class="accordion__content-inner">
-                                        Clean with a soft polishing cloth. Store in a dry place.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion__item">
-                                <button class="accordion__header" onclick="toggleAccordion(this)">
-                                    <span>Sales Terms & Exchange</span>
-                                    <span class="accordion__icon">▼</span>
-                                </button>
-                                <div class="accordion__content">
-                                    <div class="accordion__content-inner">
-                                        All sales are final. Exchanges within 14 days with original packaging.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion__item">
-                                <button class="accordion__header" onclick="toggleAccordion(this)">
-                                    <span>Custom Projects info</span>
-                                    <span class="accordion__icon">▼</span>
-                                </button>
-                                <div class="accordion__content">
-                                    <div class="accordion__content-inner">
-                                        Contact us for custom project inquiries and commissions.
+                                        Each piece is carefully handcrafted with attention to detail and quality. We
+                                        source our materials ethically and create timeless designs meant to be
+                                        treasured.
                                     </div>
                                 </div>
                             </div>
@@ -847,13 +741,11 @@
                 <div class="footer__links-wrapper">
                     <ul class="footer__links">
                         <li><a href="#">About</a></li>
-                        <li><a href="#">Shipping & Pick-up</a></li>
-                        <li><a href="#">Jewelry Care</a></li>
-                        <li><a href="#">Sales Terms & Exchange</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Care Instructions</a></li>
                         <li><a href="#">FAQ</a></li>
                         <li><a href="#">Contact</a></li>
                         <li><a href="#">Instagram</a></li>
-                        <li><a href="#">Stockists</a></li>
                     </ul>
                 </div>
 
@@ -872,14 +764,79 @@
         </div>
     </footer>
 
-    <!-- Demo Page Switcher -->
+    <!-- Demo Switcher -->
     <div class="demo-tabs">
-        <div style="font-size: 10px; margin-bottom: 5px; opacity: 0.7;">DEMO VIEW:</div>
+        <div style="font-size: 10px; margin-bottom: 5px; opacity: 0.7;">VIEW:</div>
         <button onclick="showPage('collection')" class="active" id="btnCollection">Collection</button>
-        <button onclick="showPage('product')" id="btnProduct">Product</button>
+        <button onclick="showPage('product')" id="btnProduct" style="display:none;">Product</button>
+        <button onclick="showPage('collection')" id="btnBack" style="display:none;">← Back</button>
     </div>
 
     <script>
+        // Product Data
+        const products = [
+            {
+                title: 'Cascade Pearl Necklace',
+                price: '$185.00',
+                image: 'assets/product-1-cascade-pearl-necklace.jpg',
+                description: 'An elegant cascade of delicate pearls suspended on oxidized chain, creating a dramatic yet refined drape. Each pearl is hand-selected for its luster and unique character.',
+                variants: null
+            },
+            {
+                title: 'Crystal Wire Necklace',
+                price: 'from $165.00',
+                image: 'assets/product-2-crystal-wire-necklace.jpg',
+                description: 'Minimalist sophistication meets natural beauty. Sparkling crystals float on nearly invisible wire, creating an ethereal, modern aesthetic.',
+                variants: ['14 inches - $165.00', '16 inches - $175.00', '18 inches - $185.00']
+            },
+            {
+                title: 'Pearl & Shell Earrings',
+                price: '$95.00',
+                image: 'assets/product-3-pearl-shell-earrings.jpg',
+                description: 'A harmonious blend of lustrous pearls and organic shell discs. These earrings feature freshwater pearls in soft pink and grey tones, paired with delicately carved shell pieces. The oxidized silver findings add an artisanal touch to this bohemian-chic design. Lightweight and comfortable for all-day wear, these earrings bring effortless elegance to any outfit. Each pair is unique due to the natural variations in the pearls and shells.',
+                variants: null
+            },
+            {
+                title: 'Minimalist Pearl Choker',
+                price: '$145.00',
+                image: 'assets/product-4-minimalist-pearl-choker.jpg',
+                description: 'Pure simplicity. Tiny freshwater pearls create a delicate collar that sits close to the neck. The adjustable chain ensures perfect fit.',
+                variants: null
+            }
+        ];
+
+        let currentProduct = 0;
+
+        // Show specific product
+        function showProduct(index) {
+            currentProduct = index;
+            const product = products[index];
+
+            // Update product details
+            document.getElementById('productTitle').textContent = product.title;
+            document.getElementById('productPrice').innerHTML = '<span>' + product.price + '</span>';
+            document.getElementById('productDescription').textContent = product.description;
+
+            // Update media
+            document.getElementById('productMedia').innerHTML = `
+                <img src="${product.image}" alt="${product.title}">
+            `;
+
+            // Handle variants
+            const variantSection = document.getElementById('productVariants');
+            const variantSelect = document.getElementById('variant');
+            if (product.variants) {
+                variantSection.style.display = 'block';
+                variantSelect.innerHTML = product.variants.map(v => `<option>${v}</option>`).join('');
+            } else {
+                variantSection.style.display = 'none';
+            }
+
+            // Switch to product page
+            showPage('product');
+            window.scrollTo(0, 0);
+        }
+
         // Page Switcher
         function showPage(page) {
             document.querySelectorAll('.page-view').forEach(el => el.classList.remove('active'));
@@ -888,9 +845,15 @@
             if (page === 'collection') {
                 document.getElementById('collectionPage').classList.add('active');
                 document.getElementById('btnCollection').classList.add('active');
+                document.getElementById('btnProduct').style.display = 'none';
+                document.getElementById('btnBack').style.display = 'none';
+                document.getElementById('btnCollection').style.display = 'block';
             } else if (page === 'product') {
                 document.getElementById('productPage').classList.add('active');
                 document.getElementById('btnProduct').classList.add('active');
+                document.getElementById('btnCollection').style.display = 'none';
+                document.getElementById('btnProduct').style.display = 'block';
+                document.getElementById('btnBack').style.display = 'block';
             }
         }
 
@@ -899,12 +862,10 @@
             const item = button.parentElement;
             const isActive = item.classList.contains('active');
 
-            // Close all accordions
             document.querySelectorAll('.accordion__item').forEach(el => {
                 el.classList.remove('active');
             });
 
-            // Open clicked accordion if it wasn't active
             if (!isActive) {
                 item.classList.add('active');
             }
@@ -919,10 +880,10 @@
             button.disabled = true;
 
             setTimeout(() => {
-                // Increment cart count
                 const cartCount = document.getElementById('cartCount');
                 const currentCount = parseInt(cartCount.textContent);
                 cartCount.textContent = currentCount + 1;
+                cartCount.style.display = 'block';
 
                 button.textContent = 'Added to Cart!';
 
@@ -953,19 +914,6 @@
 
             return false;
         }
-
-        // Handle anchor links to switch pages
-        document.addEventListener('click', (e) => {
-            if (e.target.tagName === 'A' && e.target.getAttribute('href') === '#product') {
-                e.preventDefault();
-                showPage('product');
-                window.scrollTo(0, 0);
-            } else if (e.target.tagName === 'A' && e.target.getAttribute('href') === '#collection') {
-                e.preventDefault();
-                showPage('collection');
-                window.scrollTo(0, 0);
-            }
-        });
     </script>
 </body>
 
